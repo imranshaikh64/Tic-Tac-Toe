@@ -51,7 +51,8 @@ function winner() {
     }
     else{
         if(getbox(1)!="" && getbox(2)!="" && getbox(3)!="" && getbox(4)!="" && getbox(5)!="" && getbox(6)!="" && getbox(7)!="" && getbox(8)!="" && getbox(9)!=""){
-            disp.innerHTML = "<center> It's a Tie! </center>";
+            disp.innerHTML = "<center> It's a Tie! 😅 </center>";
+            winnerSound();
             throw " It's a Tie! ";
         }
     }
@@ -59,7 +60,7 @@ function winner() {
 }
 
 function newStart() {
-    location.reload();
+    location.reload()
 }
 
 function changeBackground() {
