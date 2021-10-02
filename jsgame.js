@@ -1,23 +1,28 @@
 let sign = "X";
 let disp = document.getElementById("player");
-
+let gameover;
 
 
 
 function printx(number) {
-    let square = document.getElementById("r"+number); 
-    console.log(square);
-    onclickSound();
-    if(square.innerHTML==""){
-    square.innerHTML=sign;
-    winner();
-    checksign();
-    disp.innerHTML =  "<center>" + sign +"'s Turn now" + "</center>";
-    }
-}
+    if(!gameover){
 
+        let square = document.getElementById("r"+number); 
+        console.log(square);
+        onclickSound();
+        if(square.innerHTML===""){
+            square.innerHTML=sign;
+            winner();
+            if(!gameover){
+            checksign();
+            disp.innerHTML =  "<center>" + sign +"'s Turn now" + "</center>";
+            }
+        }
+    }
+    }
+    
 function checksign() {
-    if(sign == "X"){
+    if(sign === "X"){
         sign="O";
      } 
     else {
@@ -43,17 +48,16 @@ function winner() {
         disp.innerHTML =  "<center>" + "Congratulations! "+ sign +" Won the game " + "</center>";
         winnerSound();
         celebration();
-        for(let i=1; i<=9;i++){
-            document.getElementById("r"+i).innerHTML="";
-        }
-        throw "Game end";
+       gameover = true;
+    return "Game end";
 
     }
     else{
         if(getbox(1)!="" && getbox(2)!="" && getbox(3)!="" && getbox(4)!="" && getbox(5)!="" && getbox(6)!="" && getbox(7)!="" && getbox(8)!="" && getbox(9)!=""){
             disp.innerHTML = "<center> It's a Tie! 😅 </center>";
             winnerSound();
-            throw " It's a Tie! ";
+            gameover=true;
+            return " It's a Tie! ";
         }
     }
     
@@ -78,7 +82,7 @@ function changeBackground() {
 function onclickSound() {
     let audio = new Audio('clickSound.wav');
     audio.play();
-    confetti.stop();
+   // confetti.stop();
 }
 
 function winnerSound() {
